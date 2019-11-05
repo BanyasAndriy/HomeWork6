@@ -1,0 +1,54 @@
+package HomeWork6.Task5;
+
+import java.io.File;
+import java.nio.file.Files;
+
+public class UpgradeCatalog extends Thread {
+
+
+	
+	private File catalog;
+	
+	
+	public UpgradeCatalog(File catalog) {
+	this.catalog=catalog;
+	}
+	
+	
+	public void check() throws InterruptedException {
+		
+		
+	int length = catalog.listFiles().length;
+	int upgradeLength = 0;
+	
+	while(true) {
+		 if (catalog.isDirectory()) {
+	            while (true) {
+	                System.out.println("У каталозі "+catalog + " змін немає " );
+	                try {
+	                    Thread.sleep(1000);
+	                    upgradeLength = catalog.list().length;
+	                    if (upgradeLength > length) {
+	                        System.out.println(   "У каталог "  +catalog+ " додано новий файл");
+	                        length=upgradeLength;
+	                        break;
+	                    }else if(upgradeLength<length) {
+	                    	System.out.println( " З каталога "  +catalog+" видалено  файл");
+	                        length=upgradeLength;
+	                        break;
+	                    }
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+			
+			
+		
+		
+	}
+	
+	}}
+	
+	
+
